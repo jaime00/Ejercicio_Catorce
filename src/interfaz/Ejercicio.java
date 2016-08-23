@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jaime
@@ -54,6 +56,11 @@ public class Ejercicio extends javax.swing.JFrame {
         jPanel1.add(txtDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 60, -1));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jLabel3.setText("Monto a pagar");
@@ -63,6 +70,11 @@ public class Ejercicio extends javax.swing.JFrame {
         jPanel1.add(lblMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 70, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,6 +101,31 @@ public class Ejercicio extends javax.swing.JFrame {
               evt.consume(); 
           }  
     }//GEN-LAST:event_txtDiasKeyTyped
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+
+        txtDias.setText("");
+        lblMonto.setText("");
+        
+        txtDias.requestFocusInWindow();
+        
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+        
+        if(txtDias.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite la cantidad de dias de estadia","ERROR",JOptionPane.ERROR_MESSAGE);
+            txtDias.requestFocusInWindow();
+        }else{
+            
+            double dias=Double.parseDouble(txtDias.getText());
+            
+            double op=((dias-1)*200000)+100000;
+            
+            lblMonto.setText(""+op);
+            
+        }
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
